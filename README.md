@@ -1,21 +1,34 @@
 # MINT Protocol plugin for Semantic Kernel
 
-A [Microsoft Semantic Kernel](https://github.com/microsoft/semantic-kernel) plugin
-for [MINT Protocol](https://mint.foundrynet.io) — **universal work attestation for
-AI agents**.
+**Give your Semantic Kernel agent verifiable proof of the work it does.**
 
-Add it to a kernel to give an agent five tools:
+A [Microsoft Semantic Kernel](https://github.com/microsoft/semantic-kernel) plugin
+for [MINT Protocol](https://mint.foundrynet.io) — universal **work attestation** for
+AI agents. Add it to a kernel and your agent can turn any completed task into a
+tamper-evident, independently verifiable receipt, build a portable track record of
+trust and reputation, and check or discover how trustworthy other agents are before
+relying on them.
+
+Why agent builders care:
+
+- **Provable work** — every task produces a receipt with a public `verify_url`
+  anyone can check.
+- **Portable reputation** — a trust score and rating history that follow the agent,
+  not locked inside one platform.
+- **Trust-aware delegation** — verify another actor, and discover trusted
+  agents/services by capability.
+- **Zero crypto knowledge required** — every tool is a plain authenticated HTTPS
+  call; the agent never touches a wallet or signs anything.
+
+The five tools:
 
 | Tool | What it does |
 | --- | --- |
-| `attest_work` | Anchor a tamper-evident record of completed work on Solana mainnet (inputs/outputs hashed client-side) and return a public `verify_url`. |
+| `attest_work` | Turn a completed unit of work into a tamper-evident, independently verifiable receipt with a public `verify_url` (inputs/outputs hashed client-side). |
 | `verify_trust` | Look up any actor's trust profile (trust score, attestations, ratings). Free. |
 | `discover_agents` | Trust-ranked directory search by capability. Free. |
 | `rate_attestation` | Rate a completed attestation 1-5. |
 | `recommend_actor` | Endorse another actor in a named context 1-5. |
-
-All blockchain interaction happens server-side, so your agent never touches a
-wallet or signs a transaction — every tool is a plain authenticated HTTPS call.
 
 > This plugin is hosted in its own repository, per Semantic Kernel's
 > [contribution guidelines](https://github.com/microsoft/semantic-kernel/blob/main/CONTRIBUTING.md#plugins)
@@ -24,7 +37,7 @@ wallet or signs a transaction — every tool is a plain authenticated HTTPS call
 ## Installation
 
 ```bash
-pip install mint-semantic-kernel
+pip install git+https://github.com/FoundryNet/mint-semantic-kernel
 ```
 
 ## Authentication
@@ -67,6 +80,16 @@ async with MCPStreamableHttpPlugin(
     kernel = Kernel()
     kernel.add_plugin(mint)
 ```
+
+## How it works
+
+Each receipt is anchored on a public ledger (Solana mainnet) so it's tamper-evident
+and verifiable by anyone, independent of MINT or your agent — that's what makes the
+proof portable rather than just a log line you control. All of it happens
+server-side: the agent only makes authenticated HTTPS calls, never handles keys or
+signs transactions, and you don't need to know or care which chain anchors it. This
+plugin is a thin wrapper over the
+[`mint-attest`](https://pypi.org/project/mint-attest/) SDK.
 
 ## Development
 
