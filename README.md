@@ -37,7 +37,7 @@ The five tools:
 ## Installation
 
 ```bash
-pip install git+https://github.com/FoundryNet/mint-semantic-kernel
+pip install mint-semantic-kernel
 ```
 
 ## Authentication
