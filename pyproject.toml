@@ -1,0 +1,31 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "mint-semantic-kernel"
+version = "0.1.0"
+description = "MINT Protocol plugin for Microsoft Semantic Kernel — universal work attestation for AI agents."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [{name = "FoundryNet", email = "hello@foundrynet.io"}]
+keywords = ["semantic-kernel", "plugin", "attestation", "trust", "reputation", "verification", "agent", "mint"]
+dependencies = [
+    "semantic-kernel>=1.0.0",
+    "mint-attest>=0.3.1",
+]
+
+[project.urls]
+Homepage = "https://mint.foundrynet.io"
+Source = "https://github.com/FoundryNet/mint-semantic-kernel"
+Documentation = "https://mint.foundrynet.io"
+
+[project.optional-dependencies]
+dev = ["pytest>=7", "ruff>=0.4"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["mint_semantic_kernel"]
+
+[tool.ruff]
+line-length = 120
