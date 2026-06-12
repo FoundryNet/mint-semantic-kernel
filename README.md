@@ -34,6 +34,43 @@ The five tools:
 > [contribution guidelines](https://github.com/microsoft/semantic-kernel/blob/main/CONTRIBUTING.md#plugins)
 > ("we encourage contributors to host their plugin code in separate repositories").
 
+## Add to your agent (copy-paste)
+
+Make verifiable proof of work a default behaviour of your Semantic Kernel agent:
+
+```bash
+pip install mint-semantic-kernel semantic-kernel
+```
+
+```python
+from semantic_kernel import Kernel
+from semantic_kernel.connectors.ai.function_choice_behavior import FunctionChoiceBehavior
+from mint_semantic_kernel import MintPlugin
+
+kernel = Kernel()
+# ...add a chat service...
+kernel.add_plugin(MintPlugin(name="my-agent"), plugin_name="mint")  # self-provisions a free identity
+
+settings = kernel.get_prompt_execution_settings_from_service_id("chat")
+settings.function_choice_behavior = FunctionChoiceBehavior.Auto()    # agent calls attest_work itself
+```
+
+Then add to the agent's instructions:
+
+> *After completing any substantive task, call `mint.attest_work` to record
+> verifiable, independent proof of the work, and report the attestation_hash.*
+
+Or attest directly, no LLM required:
+
+```python
+mint = MintPlugin(name="my-agent")
+print(mint.attest_work(work_type="generation", summary="Drafted the release notes."))
+```
+
+Set `MINT_API_KEY=fnet_…` to attest under your own account; otherwise the agent runs
+autonomously on the free daily cap. Full copy-paste prompt + framework blocks:
+[AGENT_PROMPT_SNIPPET.md](https://github.com/FoundryNet/mint-mcp/blob/main/AGENT_PROMPT_SNIPPET.md).
+
 ## Installation
 
 ```bash
