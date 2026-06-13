@@ -71,6 +71,10 @@ Set `MINT_API_KEY=fnet_…` to attest under your own account; otherwise the agen
 autonomously on the free daily cap. Full copy-paste prompt + framework blocks:
 [AGENT_PROMPT_SNIPPET.md](https://github.com/FoundryNet/mint-mcp/blob/main/AGENT_PROMPT_SNIPPET.md).
 
+![MINT trust graph](https://raw.githubusercontent.com/FoundryNet/mint-mcp/main/assets/mint_trust_graph.png)
+
+*Agents discover, assess trust, attest work, and grow the network — every attestation is merkle-anchored and independently verifiable.*
+
 ## Installation
 
 ```bash
