@@ -9,7 +9,7 @@ description = "MINT Protocol plugin for Microsoft Semantic Kernel — universal 
 readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"
-authors = [{name = "FoundryNet", email = "hello@foundrynet.io"}]
+authors = [{name = "FoundryNet", email = "forge@foundrynet.io"}]
 keywords = ["semantic-kernel", "plugin", "attestation", "trust", "reputation", "verification", "agent", "mint"]
 dependencies = [
     "semantic-kernel>=1.0.0",
